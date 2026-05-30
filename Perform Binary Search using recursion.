@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+int binarySearch(int a[], int low, int high, int item)
+{
+    if(low > high)
+        return -1;
+
+    int mid = (low + high) / 2;
+
+    if(a[mid] == item)
+        return mid;
+    else if(item < a[mid])
+        return binarySearch(a, low, mid - 1, item);
+    else
+        return binarySearch(a, mid + 1, high, item);
+}
+
+int main()
+{
+    int n, item;
+
+    cout << "Enter number of elements: ";
+    cin >> n;
+
+    int a[n];
+
+    cout << "Enter sorted elements:\n";
+    for(int i = 0; i < n; i++)
+        cin >> a[i];
+
+    cout << "Enter element to search: ";
+    cin >> item;
+
+    int result = binarySearch(a, 0, n - 1, item);
+
+    if(result != -1)
+        cout << "Element Found at position " << result;
+    else
+        cout << "Element Not Found";
+
+    return 0;
+}
